@@ -8,4 +8,4 @@ from main.models import *
 
 def info(request):
 
-    return HttpResponse('Hello Dimon')
+    return HttpResponse('Hello Pronin')
