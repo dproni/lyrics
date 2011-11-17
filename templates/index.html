@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset=utf-8>
+    <title>{{ title }}</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="author" content="">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/static/js/redactor/redactor.js"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/css/extended.css" type="text/css"/>
+    <script type="text/javascript" src="/static/js/bootstrap-tabs.js"></script>
+    <script type="text/javascript" src="/static/js/application.js"></script>
+
+
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+</head>
+
+<body>
+<div class="topbar">
+    <div class="fill">
+        <div class="container">
+            <a class="brand" href="#">Lyricsy</a>
+            <ul class="nav">
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="#about">Language</a></li>
+                <li><a href="/add/">Add lyrics</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#mobile">Mobile</a></li>
+            </ul>
+            <form action="" class="pull-right">
+                <input class="input-small" type="text" placeholder="Username">
+                <input class="input-small" type="password" placeholder="Password">
+                <button class="btn" type="submit">Sign in</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+
+    <div class="content">
+        <div class="page-header">
+            <h1 class="links">ABCDEFGHIJKLMNOPQRSTUVWXYZ#</h1>
+        </div>
+        <div class="row">
+            <div class="span10">
+                {% block MainContent %}
+
+                {% endblock %}
+            </div>
+            <div class="span4">
+                <h3>Information</h3>
+                {% block SecondaryContent %}
+
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; Lyrics {% now "Y" %}</p>
+    </footer>
+
+</div> <!-- /container -->
+</body>
+</html> 	

@@ -1,0 +1,24 @@
+{% extends "index.html" %}
+
+{% block MainContent %}
+    <h2>Add Lyrics</h2>
+        <form action="{% url main.views.add %}" method="post">
+            <fieldset>
+
+                {% for field in form %}
+                    <div class="clearfix">
+                    <div class="fieldWrapper">
+                        {{ field.errors }}
+                        {{ field.label_tag }}: {{ field }}
+                    </div>
+                    </div>
+                {% endfor %}
+                <fieldset>
+                    <input type="submit" class="btn primary" value="Submit">
+
+        </form>
+{% endblock %}
+
+{% block SecondaryContent %}
+    assss
+{% endblock %}

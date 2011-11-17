@@ -4,6 +4,8 @@ from django.contrib import auth
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from main.models import *
+from django.views.decorators.csrf import csrf_exempt
+from main.forms import *
 
 
 def info(request):
@@ -13,6 +15,27 @@ def info(request):
             "title": title,
             "lyrics" : lyrics
             })
+
+@csrf_exempt
+def add(request):
+    title = "Main Window"
+    lyrics = Lyrics()
+    if request.method == 'POST':
+        form = AddLyrics(request.POST)
+        if form.is_valid():
+            lyrics.artist = form.cleaned_data['artist']
+            lyrics.song = form.cleaned_data['song']
+            lyrics.lyrics = form.cleaned_data['lyrics']
+            lyrics.save()
+            return render_to_response('info.html', {
+            "title": title,
+            "lyrics" : lyrics
+            })
+    else:
+        form = AddLyrics()
+    return render_to_response('add.html', {
+        'form': form,
+    })
 
 def addLyrics():
     lyrics = Lyrics()
