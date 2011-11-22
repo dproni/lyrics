@@ -1,0 +1,11 @@
+{% extends "index.html" %}
+
+{% block MainContent %}
+    {% for l in artist %}
+        <a href="{% url main.views.artist l.artist %}">{{ l.artist }}</a>
+    {% endfor %}
+{% endblock %}
+
+{% block SecondaryContent %}
+assss
+{% endblock %}

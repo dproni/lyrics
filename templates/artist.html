@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+
+{% block MainContent %}
+<h2>{{ artist.artist }}</h2>
+   {% for i in songs %}
+        <a href="{% url main.views.song i.artist i.song %}">{{ i.song }}</a></br>
+    {% endfor %}
+{% endblock %}
+
+{% block SecondaryContent %}
+assss
+{% endblock %}

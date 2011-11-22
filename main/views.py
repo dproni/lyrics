@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response, get_list_or_404, HttpResponse, HttpResponseRedirect
+from django.shortcuts import *
 from django.core.context_processors import csrf
 from django.contrib import auth
 from django.http import Http404
@@ -7,29 +7,49 @@ from main.models import *
 from django.views.decorators.csrf import csrf_exempt
 from main.forms import *
 
+WEBSITE_NAME = "Lyricsy - the best place to share, translate,discover new lyrics on the web"
 
 def info(request):
-    title = "Main Window"
-    lyrics = Lyrics.objects.get(id=1)
+    title = "Main Windfsdfsdsfow"
+#    lyrics = Lyrics.objects.get(id=1)
     return render_to_response('info.html', {
             "title": title,
-            "lyrics" : lyrics
+#            "lyrics" : lyrics
             })
 
 @csrf_exempt
 def add(request):
     title = "Main Window"
-    lyrics = Lyrics()
+    artist = Artist()
+    album = Album()
+    song = Song()
     if request.method == 'POST':
         form = AddLyrics(request.POST)
         if form.is_valid():
-            lyrics.artist = form.cleaned_data['artist']
-            lyrics.song = form.cleaned_data['song']
-            lyrics.lyrics = form.cleaned_data['lyrics']
-            lyrics.save()
-            return render_to_response('info.html', {
+            artistName = form.cleaned_data['artist']
+            try:
+                artist = Artist.objects.get(artist=artistName)
+            except:
+                artist.artist = artistName
+                artist.save()
+                
+            album.album = form.cleaned_data['album']
+            song.song = form.cleaned_data['song']
+            song.lyrics = form.cleaned_data['lyrics']
+            album.artist = artist
+            song.artist = artist
+            song.album = album
+            song.save()
+            album.save()
+
+#            return render_to_response('info.html', {
+#            "title": title,
+#            "lyrics" : lyrics
+#            })
+            return render_to_response('song.html', {
             "title": title,
-            "lyrics" : lyrics
+            "artist":artist,
+            "song" : song
             })
     else:
         form = AddLyrics()
@@ -37,178 +57,34 @@ def add(request):
         'form': form,
     })
 
-def addLyrics():
-    lyrics = Lyrics()
-    lyrics.artist = "RIHANNA"
-    lyrics.song = "S&M"
-    lyrics.lyrics = '''
-        Na na na
-Come on
-Na na na
-Come on
-Na na na na na
-Come on
-Na na na
-Come on
-Come on
-Come on
-Na na na na
-Come on
-Na na na
-Come on
-Na na na na na
-Come on
-Na na na
-Come on
-Come on
-Come on
-Na na na na
+def search(request, letter):
+    title = "Main Windfsdfsdsfow"
+    artist = Artist.objects.filter(artist__startswith=letter)
+    return render_to_response('search.html', {
+            "title": title,
+            "artist" : artist
+            })
 
-Feels so good being bad
-There's no way I'm turning back
-Now the pain is my pleasure
-Cause nothing could measure
+def artist(request, artist):
 
-Love is great, love is fine
-Out the box, out of line
-The affliction of the feeling
-Leaves me wanting more
+    artist = get_object_or_404(Artist, artist=artist)
+    songs = Song.objects.filter(artist=artist)
+    title = "%s :: %s" % ( artist.artist, WEBSITE_NAME)
 
-[Chorus x2:]
-Cause I may be bad
-But I'm perfectly good at it
-Sex in the air
-I don't care
-I love the smell of it
-Sticks and stones
-May break my bones
-But chains and whips
-Excite me
+    return render_to_response('artist.html', {
+            "title": title,
+            "artist" : artist,
+            "songs" : songs
+            })
 
-Na na na na
-Come on
-Come on
-Come on
-I like it
-Like it
-Come on
-Come on
-Come on
-I like it
-Like it
-Come on
-Come on
-Come on
-I like it
-Like it
-Come on
-Come on
-Come on
-I like it
-Like it
+def song(request, artist, song):
 
-Love is great, love is fine
-Out the box, out of line
-The affliction of the feeling
-Leaves me wanting more
+    artist = get_object_or_404(Artist, artist=artist)
+    song = get_object_or_404(Song, song=song)
+    title = "%s - %s :: %s" % ( artist.artist, song.song, WEBSITE_NAME)
+    return render_to_response('song.html', {
+            "title": title,
+            "artist":artist,
+            "song" : song
+            })
 
-[Chorus:]
-Cause I may be bad
-But I'm perfectly good at it
-Sex in the air
-I don't care
-I love the smell of it
-Sticks and stones
-May break my bones
-But chains and whips
-Excite me
-
-Na na na na
-Come on
-Come on
-Come on
-I like it
-Like it
-Come on
-Come on
-Come on
-I like it
-Like it
-Come on
-Come on
-Come on
-I like it
-Like it
-Come on
-Come on
-Come on
-I like it
-Like it
-
-S...S...S
-And
-M...M...M
-S...S...S
-And
-M...M...M
-
-Oh
-I love the feeling
-You bring to me
-Oh, you turn me on
-It's exactly what
-I've been yearning for
-Give it to me strong
-
-And meet me in my boudoir
-Make my body say ah, ah, ah
-
-I like it
-Like it
-
-[Chorus x2:]
-Cause I may be bad
-But I'm perfectly good at it
-Sex in the air
-I don't care
-I love the smell of it
-Sticks and stones
-May break my bones
-But chains and whips
-Excite me
-
-Na na na na
-Come on
-Come on
-Come on
-I like it
-Like it
-Come on
-Come on
-Come on
-I like it
-Like it
-Come on
-Come on
-Come on
-I like it
-Like it
-Come on
-Come on
-Come on
-I like it
-Like it
-
-S...S...S
-And
-M...M...M
-S...S...S
-And
-M...M...M
-S...S...S
-And
-M...M...M
-S...S...S
-And
-M...M...M'''
-    lyrics.save()
