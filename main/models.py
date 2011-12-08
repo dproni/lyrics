@@ -20,7 +20,7 @@ class Artist(models.Model):
 
 class Album(models.Model):
     id = models.AutoField(primary_key=True)
-    album = models.CharField(max_length=200)
+    album = models.CharField(max_length=200, unique=True)
     artist = models.ForeignKey(Artist)
     modified = models.DateTimeField(editable=False, null=True)
 

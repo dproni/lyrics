@@ -2,7 +2,12 @@
 
 {% block MainContent %}
 <h2>{{ artist.artist }} - {{ song.song }}</h2>
-    <div class="middle">
+    <a id="inline" href="#text">Shadow</a>
+{#    <div style="display:none"><div id="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div></div>#}
+    
+
+
+    <div id="text" class="middle">
 {{ song.lyrics|linebreaksbr }}
     </div>
 {% endblock %}

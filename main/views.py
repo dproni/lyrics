@@ -27,30 +27,42 @@ def add(request):
         form = AddLyrics(request.POST)
         if form.is_valid():
             artistName = form.cleaned_data['artist']
+            albumName = form.cleaned_data['album']
+            songName = form.cleaned_data['song']
+            song.lyrics = form.cleaned_data['lyrics']
             try:
                 artist = Artist.objects.get(artist=artistName)
             except:
                 artist.artist = artistName
                 artist.save()
-                
-            album.album = form.cleaned_data['album']
-            song.song = form.cleaned_data['song']
-            song.lyrics = form.cleaned_data['lyrics']
-            album.artist = artist
-            song.artist = artist
-            song.album = album
-            song.save()
-            album.save()
+            try:
+                album = Album.objects.get(album=albumName)
+                print "AAAAAAAAA %s %s" % (albumName, album)
+            except:
+                album.album = albumName
+                album.artist = artist
+                album.save()
+            try:
+                song = Song.objects.get(song=songName)
+                print "sadasdasds"
+                render_to_response('song.html', {
+                    "title": title,
+                    "artist": song.artist,
+                    "song" : song.song
+                })
+            except:
+                print "ssaasa"
+                song.song = songName
+                song.artist = artist
+                song.album = album
+                song.save()
 
-#            return render_to_response('info.html', {
-#            "title": title,
-#            "lyrics" : lyrics
-#            })
-            return render_to_response('song.html', {
-            "title": title,
-            "artist":artist,
-            "song" : song
-            })
+                return render_to_response('song.html', {
+                "title": title,
+                "artist":artist,
+                "song" : song
+                })
+
     else:
         form = AddLyrics()
     return render_to_response('add.html', {
@@ -69,15 +81,17 @@ def artist(request, artist):
 
     artist = get_object_or_404(Artist, artist=artist)
     songs = Song.objects.filter(artist=artist)
+    album = Album.objects.filter(artist=artist)
     title = "%s :: %s" % ( artist.artist, WEBSITE_NAME)
 
     return render_to_response('artist.html', {
             "title": title,
             "artist" : artist,
-            "songs" : songs
+            "songs" : songs,
+            "album" : album,
             })
 
-def song(request, artist, song):
+def song(request, artist, album, song):
 
     artist = get_object_or_404(Artist, artist=artist)
     song = get_object_or_404(Song, song=song)
