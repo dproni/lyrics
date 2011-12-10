@@ -1,7 +1,8 @@
 {% extends "index.html" %}
 
 {% block MainContent %}
-<h2>{{ artist.artist }} - {{ song.song }}</h2>
+<h2><a href="{% url main.views.artist artist.artist %}">{{ artist.artist }}</a> - {{ song.song }}</h2>
+{#<h2>{{ artist.artist }} - {{ song.song }}</h2>#}
     <a id="inline" href="#text">Shadow</a>
 {#    <div style="display:none"><div id="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div></div>#}
     
