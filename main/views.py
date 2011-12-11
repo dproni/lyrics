@@ -11,11 +11,11 @@ WEBSITE_NAME = "Lyricsy - the best place to share, translate,discover new lyrics
 
 def info(request):
     title = "Main Windfsdfsdsfow"
-#    lyrics = Lyrics.objects.get(id=1)
+    #    lyrics = Lyrics.objects.get(id=1)
     return render_to_response('info.html', {
-            "title": title,
-#            "lyrics" : lyrics
-            })
+        "title": title,
+        #            "lyrics" : lyrics
+    })
 
 @csrf_exempt
 def add(request):
@@ -58,24 +58,24 @@ def add(request):
                 song.save()
 
                 return render_to_response('song.html', {
-                "title": title,
-                "artist":artist,
-                "song" : song
+                    "title": title,
+                    "artist":artist,
+                    "song" : song
                 })
 
     else:
         form = AddLyrics()
     return render_to_response('add.html', {
         'form': form,
-    })
+        })
 
 def search(request, letter):
     title = "Main Windfsdfsdsfow"
     artist = Artist.objects.filter(artist__startswith=letter)
     return render_to_response('search.html', {
-            "title": title,
-            "artist" : artist
-            })
+        "title": title,
+        "artist" : artist
+    })
 
 def artist(request, artist):
 
@@ -85,11 +85,11 @@ def artist(request, artist):
     title = "%s :: %s" % ( artist.artist, WEBSITE_NAME)
 
     return render_to_response('artist.html', {
-            "title": title,
-            "artist" : artist,
-            "songs" : songs,
-            "album" : album,
-            })
+        "title": title,
+        "artist" : artist,
+        "songs" : songs,
+        "album" : album,
+        })
 
 def song(request, artist, album, song):
 
@@ -97,8 +97,30 @@ def song(request, artist, album, song):
     song = get_object_or_404(Song, song=song)
     title = "%s - %s :: %s" % ( artist.artist, song.song, WEBSITE_NAME)
     return render_to_response('song.html', {
-            "title": title,
-            "artist":artist,
-            "song" : song
-            })
+        "title": title,
+        "artist":artist,
+        "song" : song
+    })
 
+@csrf_exempt
+def contact(request):
+    form = ContactForm(request.POST)
+    if request.method == 'POST': # If the form has been submitted...
+        if form.is_valid(): # All validation rules pass
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            sender = form.cleaned_data['sender']
+            cc_myself = form.cleaned_data['cc_myself']
+            recipients = ['me@5pd.ru']
+            if cc_myself:
+                recipients.append(sender)
+
+            from django.core.mail import send_mail
+            send_mail(subject, message, sender, recipients)
+            return HttpResponseRedirect('/thanks/')
+    else:
+        form = ContactForm() # An unbound form
+
+    return render_to_response('contact.html', {
+     'form': form,
+        })
