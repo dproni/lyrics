@@ -2,18 +2,18 @@
 
 {% block MainContent %}
     <h2>Contact us</h2>
-        <form action="{% url main.views.contact %}" method="post">
+    <form action="{% url main.views.contact %}" method="post">
+        <fieldset>
+            {% for field in form %}
+                {{ field.errors }}
+                <div class="clearfix">
+                    {{ field.label_tag }} <div class="input">{{ field }}</div>
+                </div>
+            {% endfor %}
             <fieldset>
-                {% for field in form %}
-                        {{ field.errors }}
-                        <div class="clearfix">
-                        {{ field.label_tag }} <div class="input">{{ field }}</div>
-                    </div>
-                {% endfor %}
-                <fieldset>
-                    <input type="submit" class="btn primary" value="Submit">
+                <input type="submit" class="btn primary" value="Submit">
 
-        </form>
+    </form>
 {% endblock %}
 
 {% block SecondaryContent %}

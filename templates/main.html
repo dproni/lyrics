@@ -1,0 +1,16 @@
+{% extends "index_wide.html" %}
+
+{% block MainContent %}
+    <h2>Top Artists</h2>
+            {% for i in artist%}
+            <a href="{% url main.views.artist i.artist%}">{{ i.artist }}</a> from {{ i.artist }}</br>
+        {% endfor %}
+    <h2>Top Albums</h2>
+            {% for i in album%}
+            <a href="{% url main.views.song i.artist i.album i.song %}">{{ i.album }}</a> from {{ i.album }}</br>
+        {% endfor %}
+    <h2>Top Songs</h2>
+            {% for i in songs%}
+            <a href="{% url main.views.song i.artist i.album i.song %}">{{ i.song }}</a> from {{ i.album }}</br>
+        {% endfor %}
+{% endblock %}

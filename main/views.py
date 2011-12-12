@@ -7,15 +7,19 @@ from main.models import *
 from django.views.decorators.csrf import csrf_exempt
 from main.forms import *
 
-WEBSITE_NAME = "Lyricsy - the best place to share, translate,discover new lyrics on the web"
+WEBSITE_NAME = "Lyricsy - the best place to share, translate, discover new lyrics on the web"
 
-def info(request):
+def main(request):
     title = "Main Windfsdfsdsfow"
-    #    lyrics = Lyrics.objects.get(id=1)
-    return render_to_response('info.html', {
+    songs = Song.objects.order_by('rating')[:10]
+    album = Album.objects.order_by('rating')[:10]
+    artist = Artist.objects.order_by('rating')[:10]
+    return render_to_response('main.html', {
         "title": title,
-        #            "lyrics" : lyrics
-    })
+        "album": album,
+        "songs": songs,
+        "artist": artist,
+        })
 
 @csrf_exempt
 def add(request):
@@ -122,5 +126,5 @@ def contact(request):
         form = ContactForm() # An unbound form
 
     return render_to_response('contact.html', {
-     'form': form,
+        'form': form,
         })
