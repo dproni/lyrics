@@ -84,15 +84,21 @@ def search(request, letter):
 def artist(request, artist):
 
     artist = get_object_or_404(Artist, artist=artist)
-    songs = Song.objects.filter(artist=artist)
     album = Album.objects.filter(artist=artist)
+    mainList = []
+
+    for alb in album:
+        albumSongs = Song.objects.filter(artist=artist, album=alb)
+        albSongs = AlbumWithSongs( alb, albumSongs )
+        mainList.append(albSongs)
+
     title = "%s :: %s" % ( artist.artist, WEBSITE_NAME)
 
     return render_to_response('artist.html', {
         "title": title,
         "artist" : artist,
-        "songs" : songs,
-        "album" : album,
+        "mainList" : mainList,
+#        "album" : album,
         })
 
 def song(request, artist, album, song):
@@ -128,3 +134,12 @@ def contact(request):
     return render_to_response('contact.html', {
         'form': form,
         })
+
+#this class is used to show list of albums with their songs in artist.html
+class AlbumWithSongs:
+    album = 0
+    songList = []
+
+    def __init__(self, album, songList):
+        self.album = album
+        self.songList = songList

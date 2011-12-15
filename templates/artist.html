@@ -3,9 +3,25 @@
 {% block MainContent %}
 <h2>{{ artist.artist }}</h2>
 
-        {% for i in songs%}
-            <a href="{% url main.views.song i.artist i.album i.song %}">{{ i.song }}</a> from {{ i.album }}</br>
-        {% endfor %}
+    <table cellspacing="5">
+    {% for elem in mainList%}
+        <tr><th> album: {{ elem.album }} </th></tr>
+        <tr>
+            <td  width="200">
+                {% if elem.album.photo %}
+                    <img src="{{ elem.album.photo }}" alt="{{ elem.album.album }}"/>
+                {% endif %}
+            </td>
+            <td>
+              <ol>
+                {% for song in elem.songList %}
+                    <li><a href="{% url main.views.song artist elem.album song %}">{{ song }}</a></li>
+                {% endfor %}
+              </ol>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
 
 {% endblock %}
 
