@@ -1,8 +1,8 @@
-{% extends "index.html" %}
+{% extends "index_wide.html" %}
 
 {% block MainContent %}
     {% for l in artist %}
-        <a href="{% url main.views.artist l.artist %}">{{ l.artist }}</a>
+        <a href="{% url main.views.artist l.id %}">{{ l.artist }}</a><br>
     {% endfor %}
 {% endblock %}
 

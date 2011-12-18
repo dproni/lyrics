@@ -1,8 +1,8 @@
 {% extends "index.html" %}
 
 {% block MainContent %}
-    <h2><a href="{% url main.views.artist artist.artist %}">{{ artist.artist }}</a> - {{ song.song }}</h2>
-    <span class="label success"><a id="inline" href="#text">Shadow</a></span>
+    <h2><a href="{% url main.views.artist artist.id %}">{{ artist.artist }}</a> - {{ song.song }}</h2>
+    <span><a id="inline" href="#text">Shadow</a></span>
 
 
 

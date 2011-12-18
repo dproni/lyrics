@@ -10,7 +10,7 @@ from main.forms import *
 WEBSITE_NAME = "Lyricsy - the best place to share, translate, discover new lyrics on the web"
 
 def main(request):
-    title = "Main Windfsdfsdsfow"
+    title = "Lyrics"
     songs = Song.objects.order_by('rating')[:10]
     album = Album.objects.order_by('rating')[:10]
     artist = Artist.objects.order_by('rating')[:10]
@@ -19,6 +19,7 @@ def main(request):
         "album": album,
         "songs": songs,
         "artist": artist,
+        "main": True,
         })
 
 @csrf_exempt
@@ -73,17 +74,16 @@ def add(request):
         'form': form,
         })
 
-def search(request, letter):
-    title = "Main Windfsdfsdsfow"
+def letter(request, letter):
+    title = "Lyrics"
     artist = Artist.objects.filter(artist__startswith=letter)
-    return render_to_response('search.html', {
+    return render_to_response('letter.html', {
         "title": title,
         "artist" : artist
     })
 
 def artist(request, artist):
-
-    artist = get_object_or_404(Artist, artist=artist)
+    artist = get_object_or_404(Artist, id=artist)
     album = Album.objects.filter(artist=artist)
     mainList = []
 
@@ -103,12 +103,24 @@ def artist(request, artist):
 
 def song(request, artist, album, song):
 
-    artist = get_object_or_404(Artist, artist=artist)
-    song = get_object_or_404(Song, song=song)
+    artist = get_object_or_404(Artist, id=artist)
+    song = get_object_or_404(Song, id=song)
     title = "%s - %s :: %s" % ( artist.artist, song.song, WEBSITE_NAME)
     return render_to_response('song.html', {
         "title": title,
         "artist":artist,
+        "song" : song
+    })
+
+def album(request, artist, album):
+    artist = get_object_or_404(Artist, id=artist)
+    album = get_object_or_404(Album, id=album)
+    song = Song.objects.filter(artist=artist, album=album)
+    title = "%s :: %s" % ( album.album, WEBSITE_NAME)
+    return render_to_response('album.html', {
+        "title": title,
+        "album":album,
+        "artist": artist,
         "song" : song
     })
 

@@ -1,9 +1,9 @@
 {% extends "head_navigation.html" %}
 
 {% block core %}
-
-    <img class="thumbnail" src="http://placehold.it/820x230" alt="">
-
+    {% if main %}
+        <img class="thumbnail" src="http://placehold.it/820x230" alt="">
+    {% endif %}
     <div class="row">
         <div class="span16">
             {% block MainContent %}
