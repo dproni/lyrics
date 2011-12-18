@@ -2,7 +2,7 @@
 
 {% block MainContent %}
     <h2>Top Artists</h2>
-    <ul class="media-grid">
+    <ul id="middle" class="media-grid">
         {% for i in artist %}
             <li><a href="{% url main.views.artist i.id%}"><img class="thumbnail" src="http://placehold.it/70x70" alt="{{ i.artist }}">{{ i.artist }}</a></li>
         {% endfor %}
@@ -10,7 +10,7 @@
 
 
     <h2>Top Albums</h2>
-    <ul class="media-grid">
+    <ul id="middle" class="media-grid">
     {% for i in album %}
         <li><a href="{% url main.views.album i.artist.id i.id %}"><img class="thumbnail" src="http://placehold.it/70x70" alt="{{ i.album }}">{{ i.album }}</a></li>
     {% endfor %}
@@ -18,7 +18,7 @@
     <h2>Top Songs</h2>
     <ul class="songs">
     {% for i in songs %}
-        <li><a href="{% url main.views.artist i.id%}">{{ i.artist }}</a> - <a href="{% url main.views.song i.artist.id i.album.id i.id %}">{{ i.song }}</a></li>
+        <li><a href="{% url main.views.artist i.artist.id%}">{{ i.artist }}</a> - <a href="{% url main.views.song i.artist.id, i.album.id, i.id %}">{{ i.song }}</a></li>
     {% endfor %}
     </ul>
 {% endblock %}

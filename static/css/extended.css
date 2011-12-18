@@ -58,6 +58,12 @@ body {
 
 .middle {
     text-align: center;
+    z-index:10;
+}
+
+#middle {
+    z-index:10;
+	padding-left: 16px;
 }
 
 .links {
@@ -67,6 +73,7 @@ body {
 .media-grid a{
 	width: 5.5em;
 	text-align: center;
+	overflow: hidden;
 }
 
 ul.songs{
@@ -90,4 +97,17 @@ ul.songs li:nth-child(even) {
 
 ul.songs li:nth-child(odd) {
 	
+}
+
+#bar{
+	z-index:100;
+	width: 2em;
+	position: fixed;
+}
+#text {
+	z-index:10;
+}
+.shadow{
+	    z-index:20;
+		text-align: left;
 }

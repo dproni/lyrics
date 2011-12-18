@@ -1,9 +1,14 @@
 {% extends "index.html" %}
 
 {% block MainContent %}
-    <h2><a href="{% url main.views.artist artist.id %}">{{ artist.artist }}</a> - {{ song.song }}</h2>
-    <span><a id="inline" href="#text">Shadow</a></span>
 
+    <h4><a href="{% url main.views.artist artist.id %}">{{ artist.artist }}</a> - {{ song.song }}</h4>
+
+    <div id="bar">
+    <a id="inline" href="{% url main.views.ajax_lyrics song.artist.id song.album.id song.id %}" class="shadow"><img src="/static/images/shadow.png"/></a>
+    <a href="#edit"><img src="/static/images/edit.png"/></a>
+    <a href="#favorite"><img src="/static/images/favorite.png"/></a>
+    </div>
 
 
     <div id="text" class="middle">
