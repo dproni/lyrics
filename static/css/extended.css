@@ -1,5 +1,7 @@
 /* @override http://127.0.0.1:8080/static/css/extended.css */
 
+/* @override http://127.0.0.1:8080/static/css/extended.css */
+
 /* Override some defaults */
 html, body {
     background-color: #eee;
@@ -56,8 +58,60 @@ body {
 
 .middle {
     text-align: center;
+    z-index:10;
+}
+
+#middle {
+    z-index:10;
+	padding-left: 16px;
 }
 
 .links {
 	letter-spacing: 5px;
+}
+
+.media-grid a{
+	width: 5.5em;
+	text-align: center;
+	overflow: hidden;
+}
+
+ul.songs{
+	margin: 0;
+	height: 2em;
+
+	
+}
+
+ul.songs li {
+list-style-type: none;
+width: 32em;
+display:inline;
+float:left;
+border-bottom: 1px dashed #ddd;
+}
+
+ul.songs li:nth-child(even) {
+
+}
+
+ul.songs li:nth-child(odd) {
+	
+}
+
+#bar{
+	z-index:100;
+	width: 2em;
+	position: fixed;
+}
+#text {
+	z-index:10;
+}
+#middleText {
+	font-size: 1.5em;
+	line-height: 1.2em;
+}
+.shadow{
+	    z-index:20;
+		text-align: left;
 }

@@ -1,28 +1,24 @@
 {% extends "index.html" %}
 
 {% block MainContent %}
-<h2>{{ artist.artist }}</h2>
-
-    <table>
+    <h2><a href="{% url main.views.artist artist.id %}">{{ artist.artist }}</a></h2>
     {% for elem in mainList%}
-        <tr><th> album: {{ elem.album }} </th></tr>
-        <tr>
-            <td  width="200">
-                {% if elem.album.photo %}
-                    <img src="{{ elem.album.photo }}" alt="{{ elem.album.album }}"/>
-                {% endif %}
-            </td>
-            <td>
-              <ol>
-                {% for song in elem.songList %}
-                    <li><a href="{% url main.views.song artist elem.album song %}">{{ song }}</a></li>
-                {% endfor %}
-              </ol>
-            </td>
-        </tr>
-    {% endfor %}
-    </table>
+        <div class="albumTop">
+        {% if elem.album.photo %}
+            <img src="{{ elem.album.photo }}" alt="{{ elem.album.album }}"/>
+        {% endif %}
+        <div class="albumName">
+            <h3><a href="{% url main.views.album artist.id elem.album.id %}">{{ elem.album }} </a></h3>
+        </div>
+        </div>
 
+        <ol>
+        {% for song in elem.songList %}
+            <li><a href="{% url main.views.song artist.id elem.album.id song.id %}">{{ song }}</a></li>
+        {% endfor %}
+        </ol>
+        <hr>
+    {% endfor %}
 {% endblock %}
 
 {% block SecondaryContent %}

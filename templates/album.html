@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+
+{% block MainContent %}
+<h2><a href="{% url main.views.artist album.artist.id %}">{{ album.artist }}</a></h2>
+    <div class="albumTop">
+    {% if album.photo %}
+        <img src="{{ album.photo }}" alt="{{ album.album }}"/>
+    {% endif %}
+        <div class="albumName">
+            <h3><a href="{% url main.views.album artist.id album.id %}">{{ album.album }} </a></h3>
+        </div>
+    </div>
+    <hr>
+    <ol>
+    {% for i in song %}
+        <li><a href="{% url main.views.song artist.id album.id i.id %}">{{ i.song }}</a></li>
+    {% endfor %}
+    </ol>
+    <hr>
+
+{% endblock %}
+
+{% block SecondaryContent %}
+    {% if artist.photo %}
+        <img src="{{ artist.photo }}" alt="{{ artist.artist }}"/>
+    {% endif %}
+
+    {% if artist.information %}
+        <h4>About <a href="{% url main.views.artist artist.artist %}">{{ artist.artist }}</a></h4>
+        {{ artist.information }}
+    {% endif %}
+{% endblock %}

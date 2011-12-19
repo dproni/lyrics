@@ -1,9 +1,26 @@
-{% extends "index.html" %}
+{% extends "index_split.html" %}
 
-{% block MainContent %}
-    <h2><a href="{% url main.views.artist artist.artist %}">{{ artist.artist }}</a> - {{ song.song }}</h2>
-    <span class="label success"><a id="inline" href="#text">Shadow</a></span>
+{% block Song %}
 
+    <h4><a href="{% url main.views.artist artist.id %}">{{ artist.artist }}</a> - {{ song.song }}</h4>
+
+    <div id="bar">
+        <a id="inline" href="{% url main.views.ajax_lyrics song.artist.id song.album.id song.id %}" class="shadow"><img src="/static/images/shadow.png"/></a>
+        <a href="#favorite"><img src="/static/images/favorite.png"/></a>
+        <hr>
+        <a href="#edit">Edit</a>
+        <hr>
+        <a href="#edit">En</a>
+        <a href="#edit">Fr</a>
+        <a href="#edit">Es</a>
+        <a href="#edit">Ru</a>
+        <a href="#edit">Ge</a>
+        <hr>
+        <a href="#edit">Add</a>
+        <hr>
+        <a href="#edit">Version</a>
+        <a href="#edit">Tab</a>
+    </div>
 
 
     <div id="text" class="middle">
@@ -11,7 +28,35 @@
     </div>
 {% endblock %}
 
-{% block SecondaryContent %}
+
+{% block OtherVersion %}
+
+    <h4><a href="{% url main.views.artist artist.id %}">{{ artist.artist }}</a> - {{ song.song }}</h4>
+
+    <div id="bar">
+        <a id="inline" href="{% url main.views.ajax_lyrics song.artist.id song.album.id song.id %}" class="shadow"><img src="/static/images/shadow.png"/></a>
+        <a href="#favorite"><img src="/static/images/favorite.png"/></a>
+        <hr>
+        <a href="#edit">Edit</a>
+        <hr>
+        <a href="#edit">En</a>
+        <a href="#edit">Fr</a>
+        <a href="#edit">Es</a>
+        <a href="#edit">Ru</a>
+        <a href="#edit">Ge</a>
+        <hr>
+        <a href="#edit">Add</a>
+        <hr>
+        <a href="#edit">Version</a>
+        <a href="#edit">Tab</a>
+    </div>
+
+
+    <div id="text" class="middle">
+        {{ song.lyrics|linebreaksbr }}
+    </div>
+{% endblock %}
+{% block MainContent %}
     {% if artist.photo %}
         <img src="{{ artist.photo }}" alt="{{ artist.artist }}"/>
     {% endif %}
@@ -22,7 +67,7 @@
     {% endif %}
 
     {% if song.album.photo %}
-            <img src="{{ song.album.photo }}" alt="{{ song.album.album }}"/>
+        <img src="{{ song.album.photo }}" alt="{{ song.album.album }}"/>
     {% endif %}
 
     {% if song.album.information %}
@@ -37,9 +82,9 @@
 
     {% if 1 %}
         <h4>Another songs from {{ song.album }}</h4>
-{#        {% for i in songs%}#}
-{#            <a href="{% url main.views.song i.artist i.album i.song %}">{{ i.song }}</a> from {{ i.album }}</br>#}
-{#        {% endfor %}#}
+        {#        {% for i in songs%}#}
+        {#            <a href="{% url main.views.song i.artist i.album i.song %}">{{ i.song }}</a> from {{ i.album }}</br>#}
+        {#        {% endfor %}#}
         ggfgfgdgfdgf
         Another songs from
         павыпывапвапывап
@@ -50,9 +95,9 @@
 
     {% if 1 %}
         <h4>Another songs from {{  artist.artist }}</h4>
-{#        {% for i in songs%}#}
-{#            <a href="{% url main.views.song i.artist i.album i.song %}">{{ i.song }}</a> from {{ i.album }}</br>#}
-{#        {% endfor %}#}
+        {#        {% for i in songs%}#}
+        {#            <a href="{% url main.views.song i.artist i.album i.song %}">{{ i.song }}</a> from {{ i.album }}</br>#}
+        {#        {% endfor %}#}
         ggfgfgdgfdgf
         Another songs from
         павыпывапвапывап
