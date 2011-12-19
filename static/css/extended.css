@@ -107,6 +107,10 @@ ul.songs li:nth-child(odd) {
 #text {
 	z-index:10;
 }
+#middleText {
+	font-size: 1.5em;
+	line-height: 1.2em;
+}
 .shadow{
 	    z-index:20;
 		text-align: left;

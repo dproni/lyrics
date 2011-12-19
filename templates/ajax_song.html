@@ -1,12 +1,3 @@
-    <h4><a href="{% url main.views.artist artist.id %}">{{ artist.artist }}</a> - {{ song.song }}</h4>
-
-    <div id="bar">
-    <a id="inline" href="/a/1/1/1" class="shadow"><img src="/static/images/shadow.png"/></a>
-    <a href="#edit"><img src="/static/images/edit.png"/></a>
-    <a href="#favorite"><img src="/static/images/favorite.png"/></a>
-    </div>
-
-
-    <div id="text" class="middle">
-        {{ song.lyrics|linebreaksbr }}
-    </div>
+<div id="middleText" class="middle">
+    {{ song.lyrics|linebreaksbr }}
+</div>

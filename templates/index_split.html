@@ -1,0 +1,25 @@
+{% extends "head_navigation.html" %}
+
+{% block core %}
+    {% if main %}
+        <img class="thumbnail" src="http://placehold.it/820x230" alt="">
+    {% endif %}
+    <div class="row">
+        <div class="span7">
+            {% block Song %}
+
+            {% endblock %}
+        </div>
+        <div class="span7">
+            {% block OtherVersion %}
+
+            {% endblock %}
+        </div>
+        <div class="span16">
+            {% block MainContent %}
+
+            {% endblock %}
+        </div>
+    </div>
+    </div>
+{% endblock %}
