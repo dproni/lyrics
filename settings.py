@@ -1,5 +1,12 @@
 # Django settings for lyrics project.
 
+import os
+PROJECT_PATH = os.path.abspath(os.path.split(__file__)[0])
+
+TEMPLATE_DIRS = (
+    os.path.join(PROJECT_PATH, "templates"),
+)
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -9,16 +16,19 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'lyrics.db',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
-}
+#DATABASE_ENGINE = 'sqlite3'
+
+#DATABASE_NAME = os.path.join(PROJECT_PATH, 'lyrics.db')
+
+DATABASE_ENGINE = 'mysql'
+
+DATABASE_NAME = 'lyrione'
+
+DATABASE_USER = 'lyrione'
+
+DATABASE_PASSWORD = 'aqwsderf'
+
+DATABASE_HOST = '81.177.33.114'
 
 TIME_ZONE = 'Europe/Moscow'
 
@@ -36,13 +46,13 @@ MEDIA_URL = './media/'
 
 STATIC_ROOT = ''
 
-STATIC_URL = './static/'
+STATIC_URL = os.path.join(PROJECT_PATH, 'static')
 
-ARTISTS_URL = './artists/'
+ARTISTS_URL = os.path.join(PROJECT_PATH, 'artists')
 
-ALBUMS_URL = './albums/'
+ALBUMS_URL = os.path.join(PROJECT_PATH, 'albums')
 
-ADMIN_MEDIA_PREFIX = 'media/'
+ADMIN_MEDIA_PREFIX = os.path.join(PROJECT_PATH, 'media')
 
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
@@ -72,9 +82,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'lyrics.urls'
+ROOT_URLCONF = 'urls'
 
-TEMPLATE_DIRS = ('./templates',)
+#TEMPLATE_DIRS = 'templates'
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -84,7 +94,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'lyrics.main',
+    'main',
     'south',
 )
 
