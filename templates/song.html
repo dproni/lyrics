@@ -23,8 +23,9 @@
     </div>
 
 
-{#    <div id="text" class="middle">#}
-    <div id="text">
+{#show it with class=middle only if we haven't chords for this song#}
+{#    <div id="songText" class="middle">#}
+    <div id="songText">
         {{ song.lyrics|linebreaksbr }}
     </div>
 {% endblock %}
@@ -53,7 +54,7 @@
     </div>
 
 
-    <div id="text" class="middle">
+    <div id="songText" class="middle">
         {{ song.lyrics|linebreaksbr }}
     </div>
 {% endblock %}
@@ -83,9 +84,9 @@
 
     {% if 1 %}
         <h4>Another songs from {{ song.album }}</h4>
-        {#        {% for i in songs%}#}
-        {#            <a href="{% url main.views.song i.artist i.album i.song %}">{{ i.song }}</a> from {{ i.album }}</br>#}
-        {#        {% endfor %}#}
+{#                {% for i in songs%}#}
+{#                    <a href="{% url main.views.song i.artist i.album i.song %}">{{ i.song }}</a> from {{ i.album }}</br>#}
+{#                {% endfor %}#}
         ggfgfgdgfdgf
         Another songs from
         павыпывапвапывап
@@ -95,16 +96,10 @@
     {% endif %}
 
     {% if 1 %}
-        <h4>Another songs from {{  artist.artist }}</h4>
-        {#        {% for i in songs%}#}
-        {#            <a href="{% url main.views.song i.artist i.album i.song %}">{{ i.song }}</a> from {{ i.album }}</br>#}
-        {#        {% endfor %}#}
-        ggfgfgdgfdgf
-        Another songs from
-        павыпывапвапывап
-        выапваыпвапвап
-        Another songs from agagfdg
-        dgdsfgdfgdfgd
+        <h4>Another songs of {{  artist.artist }}</h4>
+                {% for songFromList in songListAll%}
+                     <a href="{% url main.views.song artist.id songFromList.album.id songFromList.id %}">{{ songFromList }}</a><br>
+                {% endfor %}
     {% endif %}
 
 {% endblock %}

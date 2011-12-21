@@ -27,7 +27,7 @@ def add(request):
     title = "Main Window"
     artist = Artist()
     album = Album()
-    song = Song()
+    songG = Song()
     if request.method == 'POST':
         form = AddLyrics(request.POST)
         if form.is_valid():
@@ -35,48 +35,51 @@ def add(request):
             albumName = form.cleaned_data['album']
             albumPicture = form.cleaned_data['albumPicture']
             songName = form.cleaned_data['song']
-            song.lyrics = form.cleaned_data['lyrics']
+            songG.lyrics = form.cleaned_data['lyrics']
+            print "adding new song..."
             try:
                 artist = Artist.objects.get(artist=artistName)
+                print "artist %s already exist" % (artist)
             except:
                 artist.artist = artistName
                 artist.save()
+                print "artist %s was added" % (artist)
             try:
                 album = Album.objects.get(album=albumName)
                 #renew album photo
                 if albumPicture:
                     album.photo = "/albums/" + albumPicture
-                    print "/albums/" + albumPicture
-                album.save()
-                print "AAAAAAAAA %s %s" % (albumName, album)
+                    album.save()
+                    print "album picture renew /albums/" + albumPicture
+                print "album %s is already exist" % (album)
             except:
                 album.album = albumName
                 album.artist = artist
                 if albumPicture:
                     album.photo = "/albums/" + albumPicture
-                    print "/albums/" + albumPicture
+                    print "album picture was added /albums/" + albumPicture
                 album.save()
-            try:
-                song = Song.objects.get(song=songName)
-                print "sadasdasds"
-                render_to_response('song.html', {
-                    "title": title,
-                    "artist": song.artist,
-                    "song" : song.song
-                })
-            except:
-                print "ssaasa"
-                song.song = songName
-                song.artist = artist
-                song.album = album
-                song.save()
+                print "album %s was added" % (album)
 
-                return render_to_response('song.html', {
-                    "title": title,
-                    "artist":artist,
-                    "album": album,
-                    "song" : song
-                })
+# TODO: here you should implement logic for adding different translations for song
+#            try:
+#                song = Song.objects.get(song=songName)
+#                print "sadasdasds"
+#                render_to_response('song.html', {
+#                    "title": title,
+#                    "artist": song.artist,
+#                    "song" : song.song
+#                })
+#            except:
+
+            songG.song = songName
+            songG.artist = artist
+            songG.album = album
+            songG.save()
+            print "song %s was added" % (songG)
+            print "artist.id = %s, album.id = %s, song.id = %s" % (artist.id, album.id, songG.id)
+
+            return song(request, artist.id, album.id, songG.id)
 
     else:
         form = AddLyrics()
@@ -108,7 +111,6 @@ def artist(request, artist):
         "title": title,
         "artist" : artist,
         "mainList" : mainList,
-#        "album" : album,
         })
 
 def song(request, artist, album, song):
@@ -116,12 +118,14 @@ def song(request, artist, album, song):
     artist = get_object_or_404(Artist, id=artist)
     album = get_object_or_404(Album, id=album)
     song = get_object_or_404(Song, id=song)
+    songListAll = Song.objects.filter(artist=artist)
     title = "%s - %s :: %s" % ( artist.artist, song.song, WEBSITE_NAME)
     return render_to_response('song.html', {
         "title": title,
         "artist": artist,
         "album": album,
-        "song" : song
+        "song" : song,
+        "songListAll" : songListAll,
     })
 
 def album(request, artist, album):
