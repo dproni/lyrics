@@ -33,6 +33,7 @@ def add(request):
         if form.is_valid():
             artistName = form.cleaned_data['artist']
             albumName = form.cleaned_data['album']
+            albumPicture = form.cleaned_data['albumPicture']
             songName = form.cleaned_data['song']
             song.lyrics = form.cleaned_data['lyrics']
             try:
@@ -42,10 +43,18 @@ def add(request):
                 artist.save()
             try:
                 album = Album.objects.get(album=albumName)
+                #renew album photo
+                if albumPicture:
+                    album.photo = "/albums/" + albumPicture
+                    print "/albums/" + albumPicture
+                album.save()
                 print "AAAAAAAAA %s %s" % (albumName, album)
             except:
                 album.album = albumName
                 album.artist = artist
+                if albumPicture:
+                    album.photo = "/albums/" + albumPicture
+                    print "/albums/" + albumPicture
                 album.save()
             try:
                 song = Song.objects.get(song=songName)
