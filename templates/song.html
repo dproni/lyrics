@@ -2,6 +2,20 @@
 
 {% block Song %}
 
+    <script type="text/javascript">
+        $(document).ready(function(){
+//        $("#side_content").load("http://www.web-source.net/html_codes_chart.htm");
+            $("#info").click(function(){
+                // load home page on click
+                $("#side_content").load("{% url main.views.ajax_song_info song.artist.id song.album.id song.id %}");
+            });
+
+        });
+    </script>
+
+
+
+
     <h4><a href="{% url main.views.artist artist.id %}">{{ artist.artist }}</a> - {{ song.song }}</h4>
 
     <div id="bar">
@@ -23,83 +37,23 @@
     </div>
 
 
-{#show it with class=middle only if we haven't chords for this song#}
-{#    <div id="songText" class="middle">#}
+    {#show it with class=middle only if we haven't chords for this song#}
+    {#    <div id="songText" class="middle">#}
     <div id="songText">
         {{ song.lyrics|linebreaksbr }}
     </div>
 {% endblock %}
 
-
+<div id="side_content"></div>
 {% block OtherVersion %}
-
-    <h4><a href="{% url main.views.artist artist.id %}">{{ artist.artist }}</a> - {{ song.song }}</h4>
-
-    <div id="bar">
-        <a id="inline" href="{% url main.views.ajax_lyrics song.artist.id song.album.id song.id %}" class="shadow"><img src="/static/images/shadow.png"/></a>
-        <a href="#favorite"><img src="/static/images/favorite.png"/></a>
-        <hr>
-        <a href="#edit">Edit</a>
-        <hr>
-        <a href="#edit">En</a>
-        <a href="#edit">Fr</a>
-        <a href="#edit">Es</a>
-        <a href="#edit">Ru</a>
-        <a href="#edit">Ge</a>
-        <hr>
-        <a href="#edit">Add</a>
-        <hr>
-        <a href="#edit">Version</a>
-        <a href="#edit">Tab</a>
-    </div>
+    <h4>Display: <a href="#edit">Chords</a> <a href="#edit">Versions</a> <a id="info" href="#">Information</a></h4>
+    <div id="side_content"></div>
 
 
-    <div id="songText" class="middle">
-        {{ song.lyrics|linebreaksbr }}
-    </div>
+
 {% endblock %}
 {% block MainContent %}
-    {% if artist.photo %}
-        <img src="{{ artist.photo }}" alt="{{ artist.artist }}"/>
-    {% endif %}
 
-    {% if artist.information %}
-        <h4>About <a href="{% url main.views.artist artist.artist %}">{{ artist.artist }}</a></h4>
-        {{ artist.information }}
-    {% endif %}
-
-    {% if song.album.photo %}
-        <img src="{{ song.album.photo }}" alt="{{ song.album.album }}"/>
-    {% endif %}
-
-    {% if song.album.information %}
-        <h4>About {{ song.album }}</h4>
-        {{ song.album.information }}
-    {% endif %}
-
-    {% if song.information %}
-        <h4>About {{ song.song }}</h4>
-        {{ song.information }}
-    {% endif %}
-
-    {% if 1 %}
-        <h4>Another songs from {{ song.album }}</h4>
-{#                {% for i in songs%}#}
-{#                    <a href="{% url main.views.song i.artist i.album i.song %}">{{ i.song }}</a> from {{ i.album }}</br>#}
-{#                {% endfor %}#}
-        ggfgfgdgfdgf
-        Another songs from
-        павыпывапвапывап
-        выапваыпвапвап
-        Another songs from agagfdg
-        dgdsfgdfgdfgd
-    {% endif %}
-
-    {% if 1 %}
-        <h4>Another songs of {{  artist.artist }}</h4>
-                {% for songFromList in songListAll%}
-                     <a href="{% url main.views.song artist.id songFromList.album.id songFromList.id %}">{{ songFromList }}</a><br>
-                {% endfor %}
-    {% endif %}
 
 {% endblock %}
+

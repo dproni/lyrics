@@ -172,6 +172,16 @@ def ajax_lyrics(request, artist, album, song):
         "artist":artist,
         "song" : song
     })
+
+def ajax_song_info(request, artist, album, song):
+    artist = get_object_or_404(Artist, id=artist)
+    song = get_object_or_404(Song, id=song)
+    title = "%s - %s :: %s" % ( artist.artist, song.song, WEBSITE_NAME)
+    return render_to_response('ajax/ajax_song_info.html', {
+        "title": title,
+        "artist":artist,
+        "song" : song
+    })
 #this class is used to show list of albums with their songs in artist.html
 class AlbumWithSongs:
     album = 0
