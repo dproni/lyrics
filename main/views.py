@@ -59,7 +59,7 @@ def add(request):
                     album.photo = "/albums/" + albumPicture
                     print "album picture was added /albums/" + albumPicture
                 album.save()
-                print "album %s was added" % (album)
+#                print "album %s was added" % (album)
 
 # TODO: here you should implement logic for adding different translations for song
 #            try:

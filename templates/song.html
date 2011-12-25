@@ -2,11 +2,11 @@
 
 {% block Song %}
 
+
+
     <script type="text/javascript">
         $(document).ready(function(){
-//        $("#side_content").load("http://www.web-source.net/html_codes_chart.htm");
             $("#info").click(function(){
-                // load home page on click
                 $("#side_content").load("{% url main.views.ajax_song_info song.artist.id song.album.id song.id %}");
             });
 
@@ -40,7 +40,10 @@
     {#show it with class=middle only if we haven't chords for this song#}
     {#    <div id="songText" class="middle">#}
     <div id="songText">
-        {{ song.lyrics|linebreaksbr }}
+            {% load filters %}
+        {{ song.lyrics|spacesAndBR}}
+
+    sss s  s   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sss &nbsp;
     </div>
 {% endblock %}
 

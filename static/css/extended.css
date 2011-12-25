@@ -109,6 +109,7 @@ ul.songs li:nth-child(odd) {
     /*for make indent from fixed #bar*/
     position: relative;
     left: 50px;
+    white-space: nowrap;
 }
 #middleText {
 	font-size: 1.5em;

@@ -10,11 +10,7 @@ TEMPLATE_DIRS = (
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
-)
-
-MANAGERS = ADMINS
+#MANAGERS = ADMINS
 
 #DATABASE_ENGINE = 'sqlite3'
 
