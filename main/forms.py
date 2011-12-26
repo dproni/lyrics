@@ -38,6 +38,7 @@ class AddLyrics(forms.Form):
     print "path = %s" % (path)
 
     albumPicture= forms.FilePathField(path=path, match='.jpg$')
+    albumPicture.choices.sort()
     lang        = forms.ChoiceField(choices=POSSIBLE_COUNTRIES)
     textType    = forms.ChoiceField(choices=TEXT_TYPES)
     lyrics      = forms.CharField(widget=forms.widgets.Textarea())

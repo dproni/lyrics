@@ -12,13 +12,13 @@ TEMPLATE_DEBUG = DEBUG
 
 #MANAGERS = ADMINS
 
-#DATABASE_ENGINE = 'sqlite3'
+DATABASE_ENGINE = 'sqlite3'
 
-#DATABASE_NAME = os.path.join(PROJECT_PATH, 'lyrics.db')
+DATABASE_NAME = os.path.join(PROJECT_PATH, 'lyrics.db')
 
-DATABASE_ENGINE = 'mysql'
+#DATABASE_ENGINE = 'mysql'
 
-DATABASE_NAME = 'lyrione'
+#DATABASE_NAME = 'lyrione'
 
 DATABASE_USER = 'lyrione'
 
