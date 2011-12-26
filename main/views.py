@@ -33,7 +33,12 @@ def add(request):
         if form.is_valid():
             artistName = form.cleaned_data['artist']
             albumName = form.cleaned_data['album']
+
             albumPicture = form.cleaned_data['albumPicture']
+            position = albumPicture.find('albums') - 1
+            albumPicture = albumPicture[position:]
+            print "albumPicture = %s" % (albumPicture)
+
             songName = form.cleaned_data['song']
             songG.lyrics = form.cleaned_data['lyrics']
             print "adding new song..."
@@ -48,18 +53,18 @@ def add(request):
                 album = Album.objects.get(album=albumName)
                 #renew album photo
                 if albumPicture:
-                    album.photo = "/albums/" + albumPicture
+                    album.photo = albumPicture
                     album.save()
-                    print "album picture renew /albums/" + albumPicture
+                    print "album picture renew " + albumPicture
                 print "album %s is already exist" % (album)
             except:
                 album.album = albumName
                 album.artist = artist
                 if albumPicture:
-                    album.photo = "/albums/" + albumPicture
-                    print "album picture was added /albums/" + albumPicture
+                    album.photo = albumPicture
+                    print "album picture was added " + albumPicture
                 album.save()
-#                print "album %s was added" % (album)
+                print "album %s was added" % (album)
 
 # TODO: here you should implement logic for adding different translations for song
 #            try:
@@ -118,14 +123,12 @@ def song(request, artist, album, song):
     artist = get_object_or_404(Artist, id=artist)
     album = get_object_or_404(Album, id=album)
     song = get_object_or_404(Song, id=song)
-    songListAll = Song.objects.filter(artist=artist)
     title = "%s - %s :: %s" % ( artist.artist, song.song, WEBSITE_NAME)
     return render_to_response('song.html', {
         "title": title,
         "artist": artist,
         "album": album,
         "song" : song,
-        "songListAll" : songListAll,
     })
 
 def album(request, artist, album):
@@ -176,11 +179,13 @@ def ajax_lyrics(request, artist, album, song):
 def ajax_song_info(request, artist, album, song):
     artist = get_object_or_404(Artist, id=artist)
     song = get_object_or_404(Song, id=song)
+    songListAll = Song.objects.filter(artist=artist)
     title = "%s - %s :: %s" % ( artist.artist, song.song, WEBSITE_NAME)
     return render_to_response('ajax/ajax_song_info.html', {
         "title": title,
         "artist":artist,
-        "song" : song
+        "song" : song,
+        "songListAll" : songListAll,
     })
 #this class is used to show list of albums with their songs in artist.html
 class AlbumWithSongs:
