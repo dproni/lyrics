@@ -9,6 +9,8 @@
 
 {% if song.album.photo %}
     <img src="{{ song.album.photo }}" alt="{{ song.album.album }}"/>
+{% else %}
+    <img src="http://placehold.it/70x70" alt="{{ song.album.album }}"/>
 {% endif %}
 
 {% if song.album.information %}
@@ -35,8 +37,8 @@
 {% endif %}
 
 {% if 1 %}
-    <h4>Another songs of {{  artist.artist }}</h4>
-    {% for songFromList in songListAll%}
+    <h4>Another songs of {{ artist.artist }}</h4>
+    {% for songFromList in songListAll %}
         <a href="{% url main.views.song artist.id songFromList.album.id songFromList.id %}">{{ songFromList }}</a><br>
     {% endfor %}
 {% endif %}
