@@ -1,13 +1,14 @@
-{% extends "index.html" %}
+{% extends "index_wide.html" %}
 
 {% block MainContent %}
-    <h2>Contact us</h2>
-    <form action="{% url main.views.contact %}" method="post">
+    <form action="{% url main.views.contact %}" method="post" class="form-horizontal">
         <fieldset>
+            <legend>Contact us</legend>
             {% for field in form %}
-                {{ field.errors }}
-                <div class="clearfix">
-                    {{ field.label_tag }} <div class="input">{{ field }}</div>
+                <div class="control-group">
+                    {{ field.label_tag }}
+                    <div class="controls">{{ field }}</div>
+                    {{ field.errors }}
                 </div>
             {% endfor %}
             <fieldset>

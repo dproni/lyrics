@@ -1,19 +1,23 @@
-{% extends "index.html" %}
+{% extends "index_wide.html" %}
 
 {% block MainContent %}
-    <h2>Add Lyrics</h2>
-        <form action="{% url main.views.add %}" method="post">
+    <form action="{% url main.views.add %}" method="post" class="form-horizontal">
+        <fieldset>
+            <legend>Add Lyrics</legend>
+            {% for field in form %}
+                <div class="control-group">
+                    {{ field.label_tag }}
+                    <div class="controls">{{ field }}</div>
+                    {{ field.errors }}
+                </div>
+            {% endfor %}
+            <div class="form-actions">
+                <input type="submit" class="btn-primary span4" value="Submit">
+            </div>
             <fieldset>
-                {% for field in form %}
-                        {{ field.errors }}
-                        <div class="clearfix">
-                        {{ field.label_tag }} <div class="input">{{ field }}</div>
-                    </div>
-                {% endfor %}
-                <fieldset>
-                    <input type="submit" class="btn primary" value="Submit">
 
-        </form>
+    </form>
+
 {% endblock %}
 
 {% block SecondaryContent %}

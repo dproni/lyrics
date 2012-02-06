@@ -6,85 +6,111 @@
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
     <meta name="author" content="">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script src=" https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <script type="text/javascript" src="/static/js/bootstrap-tabs.js"></script>
-    <script type="text/javascript" src="/static/js/application.js"></script>
-    <script type="text/javascript" src="/static/js/jquery.fancybox-1.3.4.pack.js"></script>
-    {#    <link rel="stylesheet" href="/static/css/bootstrap.css" type="text/css"/>#}
-    <link rel="stylesheet" type="text/css" href="/static/css/jquery.fancybox-1.3.4.css" media="screen"/>
-    <link rel="stylesheet/less" href="/static/lib/bootstrap.less">
-    <script type="text/javascript" src="/static/js/less-1.1.5.min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap-dropdown.js"></script>
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
+    {#    <link rel="stylesheet/less" href="/static/css">#}
+    {#    <script type="text/javascript" src="/static/js/less-1.2.1.min.js"></script>#}
     <link rel="stylesheet" href="/static/css/extended.css" type="text/css"/>
-    {#    <link rel="stylesheet" type="text/css" href="/static/css/main.css" media="screen" />#}
     <link rel="shortcut icon" href="images/favicon.ico">
     {#    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">#}
     {#    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">#}
     {#    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">#}
 </head>
-<script type="text/javascript">
+
+<script>
     $(document).ready(function () {
-        $("a#inline").fancybox({
-            'hideOnContentClick':false,
-            'showCloseButton':true,
-        });
+        $('.dropdown-toggle').dropdown();
     });
 </script>
 <body>
-<div class="topbar">
-    <div class="fill">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
         <div class="container">
-            <a class="brand" href="/">Lyrione</a>
-            <ul class="nav">
-                <li><a href="/add/">Add lyrics</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li><a href="#mobile">Mobile</a></li>
-            </ul>
-            <form action="" class="pull-right">
-                <input class="input-small" type="text" placeholder="Username">
-                <input class="input-small" type="password" placeholder="Password">
-                <button class="btn" type="submit">Sign in</button>
-            </form>
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">/<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/add/">Add lyrics</a></li>
+                            <li><a href="/contact">Contact</a></li>
+                            <li><a href="#mobile">Mobile</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/">Main page</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/A">A</a>
+                    <li>
+                    <li><a href="/B">B</a>
+                    <li>
+                    <li><a href="/C">C</a>
+                    <li>
+                    <li><a href="/D">D</a>
+                    <li>
+                    <li><a href="/E">E</a>
+                    <li>
+                    <li><a href="/F">F</a>
+                    <li>
+                    <li><a href="/G">G</a>
+                    <li>
+                    <li><a href="/H">H</a>
+                    <li>
+                    <li><a href="/I">I</a>
+                    <li>
+                    <li><a href="/J">J</a>
+                    <li>
+                    <li><a href="/K">K</a>
+                    <li>
+                    <li><a href="/L">L</a>
+                    <li>
+                    <li><a href="/M">M</a>
+                    <li>
+                    <li><a href="/N">N</a>
+                    <li>
+                    <li><a href="/O">O</a>
+                    <li>
+                    <li><a href="/P">P</a>
+                    <li>
+                    <li><a href="/Q">Q</a>
+                    <li>
+                    <li><a href="/R">R</a>
+                    <li>
+                    <li><a href="/S">S</a>
+                    <li>
+                    <li><a href="/T">T</a>
+                    <li>
+                    <li><a href="/U">U</a>
+                    <li>
+                    <li><a href="/V">V</a>
+                    <li>
+                    <li><a href="/W">W</a>
+                    <li>
+                    <li><a href="/X">X</a>
+                    <li>
+                    <li><a href="/Y">Y</a>
+                    <li>
+                    <li><a href="/Z">Z</a>
+                    <li>
+                    <li><a href="{% url main.views.number %}">0-&#8734;</a>
+                    <li>
+                        <form method="get" action="/search/" class="navbar-search pull-left">
+                            <input type="text" name="q" class="search-query" placeholder="Search">
+                        </form>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
         </div>
     </div>
 </div>
 
 <div class="container">
 
-    <div class="content">
-        <div class="page-header">
-            <div class="links">
-                <a href="/A">A</a>
-                <a href="/B">B</a>
-                <a href="/C">C</a>
-                <a href="/D">D</a>
-                <a href="/E">E</a>
-                <a href="/F">F</a>
-                <a href="/G">G</a>
-                <a href="/H">H</a>
-                <a href="/I">I</a>
-                <a href="/J">J</a>
-                <a href="/K">K</a>
-                <a href="/L">L</a>
-                <a href="/M">M</a>
-                <a href="/N">N</a>
-                <a href="/O">O</a>
-                <a href="/P">P</a>
-                <a href="/Q">Q</a>
-                <a href="/R">R</a>
-                <a href="/S">S</a>
-                <a href="/T">T</a>
-                <a href="/U">U</a>
-                <a href="/V">V</a>
-                <a href="/W">W</a>
-                <a href="/X">X</a>
-                <a href="/Y">Y</a>
-                <a href="/Z">Z</a>
-                <a href="/#">#</a>
-            </div>
+    <div class="hero-unit">
 
-        </div>
         {% block core %}
 
         {% endblock %}

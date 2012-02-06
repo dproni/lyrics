@@ -56,6 +56,22 @@ body {
     border: 0;
 }
 
+.navbar .nav > li > a {
+	padding: 10px 7px 8px 8px;
+}
+
+form.well.form-search {
+	padding: 6px;
+	margin: 0;
+	width: 100px;
+	background: none;
+}
+
+input.search-query {
+		width: 100px;
+	height: 15px;
+}
+
 .middle {
     text-align: center;
     z-index:10;
@@ -64,6 +80,11 @@ body {
 #middle {
     z-index:10;
 	padding-left: 16px;
+}
+
+ul#middle.media-grid {
+	clear: both;
+	height: 140px;
 }
 
 .links {
@@ -85,7 +106,7 @@ ul.songs{
 
 ul.songs li {
 list-style-type: none;
-width: 32em;
+width: 26.9em;
 display:inline;
 float:left;
 border-bottom: 1px dashed #ddd;
@@ -106,10 +127,30 @@ ul.songs li:nth-child(odd) {
 }
 #songText {
 	z-index:10;
-    /*for make indent from fixed #bar*/
-    position: relative;
-    left: 50px;
     white-space: nowrap;
+	text-align: center;
+}
+
+h4 {
+	text-align: center;
+	margin: 10px;
+}
+
+div.hero-unit {
+	margin-top: 20px;
+}
+
+#middle li {
+	float: left;
+	list-style-type: none;
+	width: 80px;
+	margin: 5px;
+	text-align: center;
+	overflow: hidden;
+}
+
+#middle ul{
+
 }
 #middleText {
 	font-size: 1.5em;

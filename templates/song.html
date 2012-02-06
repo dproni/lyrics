@@ -1,55 +1,55 @@
-{% extends "index_split.html" %}
+{% extends "index_wide.html" %}
 
 {% block Song %}
 
 
 
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $("#info").click(function(){
-                $("#side_content").load("{% url main.views.ajax_song_info song.artist.id song.album.id song.id %}");
-            });
-
-        });
-    </script>
-
+    {#    <script type="text/javascript">#}
+    {#        $(document).ready(function(){#}
+    {#            $("#info").click(function(){#}
+    {#                $("#side_content").load("{% url main.views.ajax_song_info song.artist.id song.album.id song.id %}");#}
+    {#            });#}
+    {##}
+    {#        });#}
+    {#    </script>#}
 
 
 
     <h4><a href="{% url main.views.artist artist.id %}">{{ artist.artist }}</a> - {{ song.song }}</h4>
 
-    <div id="bar">
-        <a id="inline" href="{% url main.views.ajax_lyrics song.artist.id song.album.id song.id %}" class="shadow"><img src="/static/images/shadow.png"/></a>
-        <a href="#favorite"><img src="/static/images/favorite.png"/></a>
-        <hr>
-        <a href="#edit">Edit</a>
-        <hr>
-        <a href="#edit">En</a>
-        <a href="#edit">Fr</a>
-        <a href="#edit">Es</a>
-        <a href="#edit">Ru</a>
-        <a href="#edit">Ge</a>
-        <hr>
-        <a href="#edit">Add</a>
-        <hr>
-        <a href="#edit">Version</a>
-        <a href="#edit">Tab</a>
-    </div>
+    {#    <div id="bar">#}
+    {#        <a id="inline" href="{% url main.views.ajax_lyrics song.artist.id song.album.id song.id %}" class="shadow"><img src="/static/images/shadow.png"/></a>#}
+    {#        <a href="#favorite"><img src="/static/images/favorite.png"/></a>#}
+    {#        <hr>#}
+    {#        <a href="#edit">Edit</a>#}
+    {#        <hr>#}
+    {#        <a href="#edit">En</a>#}
+    {#        <a href="#edit">Fr</a>#}
+    {#        <a href="#edit">Es</a>#}
+    {#        <a href="#edit">Ru</a>#}
+    {#        <a href="#edit">Ge</a>#}
+    {#        <hr>#}
+    {#        <a href="#edit">Add</a>#}
+    {#        <hr>#}
+    {#        <a href="#edit">Version</a>#}
+    {#        <a href="#edit">Tab</a>#}
+    {#    </div>#}
 
 
     {#show it with class=middle only if we haven't chords for this song#}
     {#    <div id="songText" class="middle">#}
     <div id="songText">
-            {% load filters %}
-        {{ song.lyrics|spacesAndBR}}
+        {% load filters %}
+        {{ song.lyrics|spacesAndBR }}
 
-    sss s  s   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sss &nbsp;
     </div>
 {% endblock %}
 
 <div id="side_content"></div>
 {% block OtherVersion %}
-    <h4>Display: <a href="#edit">Chords</a> <a href="#edit">Tabs</a> <a href="#edit">Translation</a> <a id="info" href="#">Information</a></h4>
+    <h4>Display: <a href="#edit">Chords</a> <a href="#edit">Tabs</a> <a href="#edit">Translation</a> <a id="info"
+                                                                                                        href="#">Information</a>
+    </h4>
     <div id="side_content"></div>
 
 

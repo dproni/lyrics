@@ -5,7 +5,12 @@
         <img class="thumbnail" src="http://placehold.it/820x230" alt="">
     {% endif %}
     <div class="row">
-        <div class="span16">
+        <div class="span9">
+            {% block Song %}
+
+            {% endblock %}
+        </div>
+        <div class="span9">
             {% block MainContent %}
 
             {% endblock %}

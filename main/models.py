@@ -6,7 +6,7 @@ class Artist(models.Model):
     artist = models.CharField(max_length=200, unique=True)
     information = models.CharField(max_length=500, null=True)
     rating = models.IntegerField(blank=True, null=True)
-    photo  = models.ImageField(upload_to = 'artists/', null=True, blank=True)
+    photo = models.ImageField(upload_to='artists/', null=True, blank=True)
     modified = models.DateTimeField(editable=False, null=True)
 
     def save(self, *args, **kwargs):
@@ -21,13 +21,14 @@ class Artist(models.Model):
     def __unicode__(self):
         return self.artist
 
+
 class Album(models.Model):
     id = models.AutoField(primary_key=True)
     album = models.CharField(max_length=200, unique=True)
     artist = models.ForeignKey(Artist)
     information = models.CharField(max_length=500, null=True)
     rating = models.IntegerField(blank=True, null=True)
-    photo  = models.ImageField(upload_to = 'albums/', null=True, blank=True)
+    photo = models.ImageField(upload_to='albums/', null=True, blank=True)
     modified = models.DateTimeField(editable=False, null=True)
 
     def save(self, *args, **kwargs):
@@ -41,6 +42,7 @@ class Album(models.Model):
 
     def __unicode__(self):
         return self.album
+
 
 class Song(models.Model):
     id = models.AutoField(primary_key=True)

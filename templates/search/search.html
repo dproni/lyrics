@@ -1,0 +1,51 @@
+{% extends 'index_wide.html' %}
+
+{% block MainContent %}
+    <form action="." method="get" class="form-horizontal">
+        <fieldset>
+            <legend>Search</legend>
+            {% for field in form %}
+                <div class="control-group">
+                    {{ field.label_tag }}
+                    <div class="controls">{{ field }}</div>
+                    {{ field.errors }}
+                </div>
+            {% endfor %}
+            <div class="form-actions">
+                <input type="submit" class="btn-primary span4" value="Search">
+            </div>
+            <fieldset>
+    </form>
+    {% if query %}
+        <legend>Finds in next artists</legend>
+
+        {% for result in page.object_list %}
+            <ul>
+                {#            {% ifequal result.model_name 'artist' %}#}
+                <li><a href="{% url main.views.artist result.object.id %}">{{ result.object.artist }}</a></li>
+                {#            {% endifequal %}#}
+                {#            {% ifequal result.model_name 'album' %}#}
+                {#                <a href="{% url main.views.album result.object.id result.object.id %}">{{ result.object }}</a>#}
+                {#            {% endifequal %}#}
+                {#            {% ifequal result.model_name 'song' %}#}
+                {#                Apple: <a href="{% url main.views.song %}">{{ result.object }}</a>#}
+                {#            {% endifequal %}#}
+            </ul>
+        {% empty %}
+            <p>No results found.</p>
+        {% endfor %}
+
+        {% if page.has_previous or page.has_next %}
+            <div>
+                {% if page.has_previous %}<a
+                        href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous
+                {% if page.has_previous %}</a>{% endif %}
+                |
+                {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}
+                Next &raquo;{% if page.has_next %}</a>{% endif %}
+            </div>
+        {% endif %}
+    {% else %}
+        {# Show some example queries to run, maybe query syntax, something else? #}
+    {% endif %}
+{% endblock %}
