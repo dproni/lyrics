@@ -14,7 +14,7 @@ def setup_django_env(path):
 
     setup_environ(project)
 
-setup_django_env('/Users/kurd/Documents/workspace/Django/lyrics/')
+setup_django_env('/home/marvin/lyrics/lyrics/')
 
 ITEM_PIPELINES = [
     'test_scrapy.pipelines.LyricsPipeline',
