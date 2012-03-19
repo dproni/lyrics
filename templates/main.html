@@ -19,8 +19,8 @@
     <h2>Top Songs</h2>
     <ul class="songs">
         {% for i in songs %}
-            <li><a href="{% url main.views.artist i.artist.id%}">{{ i.artist }}</a> - <a
-                    href="{% url main.views.song i.artist.id i.id %}">{{ i.song }}</a></li>
+            <li><a href="{% url main.views.artist i.artist.id%}">{{ i.artist }}</a> -
+                <a href="{% url main.views.song i.artist.id i.id %}">{{ i.song }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}
