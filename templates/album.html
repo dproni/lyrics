@@ -13,7 +13,7 @@
     <hr>
     <ol>
         {% for i in song %}
-            <li><a href="{% url main.views.song artist.id album.id i.id %}">{{ i.song }}</a></li>
+            <li><a href="{% url main.views.song artist.id i.id %}">{{ i.song }}</a></li>
         {% endfor %}
     </ol>
     <hr>

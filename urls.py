@@ -17,8 +17,9 @@ urlpatterns = patterns('',
     (r'^([A-Z]{1})/', letter),
     (r'^number/$', number),
     (r'^(\d{1,10})/$', artist),
-    (r'^(\d{1,10})/(\d{1,10})/$', album),
-    (r'^(\d{1,10})/(\d{1,10})/(\d{1,10})/$', song),
+    (r'^(\d{1,10})/(\d{1,10})/$', song),
+#    (r'^(\d{1,10})/(\d{1,10})/$', album), #TODO should be with tag
+#    (r'^(\d{1,10})/(\d{1,10})/(\d{1,10})/$', song), # TODO goes to album
     (r'^ajax/(\d{1,10})/(\d{1,10})/(\d{1,10})/$', ajax_lyrics),
     (r'^ajax_song_info/(\d{1,10})/(\d{1,10})/(\d{1,10})/$', ajax_song_info),
     (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_URL}),

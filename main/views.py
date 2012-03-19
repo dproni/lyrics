@@ -1,5 +1,5 @@
 from django.shortcuts import *
-from main.models import *
+from main.models import Artist, Song, Album
 from main.forms import *
 from django.views.decorators.csrf import csrf_exempt
 from haystack.views import SearchView
@@ -118,25 +118,25 @@ def artist(request, artist):
         albumSongs = Song.objects.filter(artist=artist, album=alb)
         albSongs = AlbumWithSongs(alb, albumSongs)
         mainList.append(albSongs)
-
+    songs = Song.objects.filter(artist=artist)
     title = "%s :: %s" % ( artist.artist, WEBSITE_NAME)
 
     return render_to_response('artist.html', {
         "title": title,
         "artist": artist,
+        "songs": songs,
         "mainList": mainList,
         })
 
 
-def song(request, artist, album, song):
+def song(request, artist, song):
     artist = get_object_or_404(Artist, id=artist)
-    album = get_object_or_404(Album, id=album)
+#    album = get_object_or_404(Album, id=album)
     song = get_object_or_404(Song, id=song)
     title = "%s - %s :: %s" % ( artist.artist, song.song, WEBSITE_NAME)
     return render_to_response('song.html', {
         "title": title,
         "artist": artist,
-        "album": album,
         "song": song,
         })
 

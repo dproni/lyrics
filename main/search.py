@@ -24,7 +24,7 @@ class SongIndex(SearchIndex):
     def get_model(self):
         return Song
 
-site.register(Artist, ArtistIndex)
-site.register(Album, AlbumIndex)
-site.register(Song, SongIndex)
+#site.register(Artist, ArtistIndex)
+#site.register(Album, AlbumIndex)
+#site.register(Song, SongIndex)
 
